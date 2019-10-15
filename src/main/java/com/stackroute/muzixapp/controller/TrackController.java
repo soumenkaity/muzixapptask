@@ -96,5 +96,11 @@ public class TrackController {
 
         return responseEntity;
     }
+
+    @GetMapping("/search/{name}")
+    public ResponseEntity<?> getTracksByName(@PathVariable String name) {
+        System.out.println(trackService.getTrackByName(name).toString());
+        return new ResponseEntity<>(trackService.getTrackByName(name), HttpStatus.OK);
+    }
 }
 

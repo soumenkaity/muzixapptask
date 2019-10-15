@@ -1,6 +1,8 @@
 package com.stackroute.muzixapp.controller;
 
 import com.stackroute.muzixapp.domain.Track;
+import com.stackroute.muzixapp.exceptions.TrackAlreadyExistsException;
+import com.stackroute.muzixapp.exceptions.TrackNotFoundException;
 import com.stackroute.muzixapp.service.TrackService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +26,7 @@ public class TrackController {
         try {
             trackService.saveTrack(track);
             responseEntity = new ResponseEntity("Successfully Created", HttpStatus.CREATED);
-        } catch(Exception ex) {
+        } catch(TrackAlreadyExistsException ex) {
             responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
         }
 
@@ -55,7 +57,7 @@ public class TrackController {
             trackService.deleteTrack(id);
             responseEntity = new ResponseEntity("Deleted Successfully", HttpStatus.OK);
 
-        } catch (Exception ex) {
+        } catch (TrackNotFoundException ex) {
             responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
         }
 
@@ -70,7 +72,7 @@ public class TrackController {
         try {
             trackService.updateTrack(id,comment);
             responseEntity = new ResponseEntity<String>("Updated Successfully", HttpStatus.CREATED);
-        } catch (Exception ex) {
+        } catch (TrackNotFoundException ex) {
             responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
         }
 
@@ -90,7 +92,7 @@ public class TrackController {
         try {
             trackService.getTrackById(id);
             responseEntity = new ResponseEntity<String>("Track Details", HttpStatus.FOUND);
-        } catch (Exception ex){
+        } catch (TrackNotFoundException ex){
             responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
         }
 

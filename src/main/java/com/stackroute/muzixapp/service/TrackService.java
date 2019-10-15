@@ -17,5 +17,5 @@ public interface TrackService {
 
     public Track updateTrack(int id, String comment);
 
-    List<Track> getTrackByName(String name);
+    public List<Track> getTrackByName(String name);
 }

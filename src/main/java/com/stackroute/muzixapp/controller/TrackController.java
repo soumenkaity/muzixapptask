@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class TrackController {
     TrackService trackService;
 
-    public TrackController(@Qualifier("trackDummyServiceImpl") TrackService trackService){
+    public TrackController(TrackService trackService){
         this.trackService = trackService;
     }
 

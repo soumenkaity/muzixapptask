@@ -5,21 +5,19 @@ import com.stackroute.muzixapp.exceptions.TrackAlreadyExistsException;
 import com.stackroute.muzixapp.exceptions.TrackNotFoundException;
 import com.stackroute.muzixapp.repository.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Primary
-public class TrackServiceImpl implements TrackService{
+public class TrackDummyServiceImpl implements TrackService{
 
     TrackRepository trackRepository;
 
     @Autowired
-    public TrackServiceImpl(TrackRepository trackRepository){
-        System.out.println("Inside TrackServiceImpl class");
+    public TrackDummyServiceImpl(TrackRepository trackRepository){
+        System.out.println("Inside TrackDummyServiceImpl class");
         this.trackRepository = trackRepository;
     }
 
@@ -56,7 +54,7 @@ public class TrackServiceImpl implements TrackService{
 
     @Override
     public List<Track> getAllTracks() {
-        System.out.println("Inside TrackServiceImpl class getall");
+        System.out.println("Inside TrackDummyServiceImpl class getall");
         return trackRepository.findAll();
     }
 
@@ -76,4 +74,3 @@ public class TrackServiceImpl implements TrackService{
         return trackRepository.findByName(name);
     }
 }
-

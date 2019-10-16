@@ -4,6 +4,7 @@ import com.stackroute.muzixapp.domain.Track;
 import com.stackroute.muzixapp.exceptions.TrackAlreadyExistsException;
 import com.stackroute.muzixapp.exceptions.TrackNotFoundException;
 import com.stackroute.muzixapp.service.TrackService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +12,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "api/v1")
 public class TrackController {
-
     TrackService trackService;
 
-    public TrackController(TrackService trackService){
+    public TrackController(@Qualifier("trackDummyServiceImpl") TrackService trackService){
         this.trackService = trackService;
     }
 
